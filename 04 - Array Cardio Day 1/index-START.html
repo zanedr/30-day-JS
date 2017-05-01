@@ -31,28 +31,77 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    let preFive = inventors.filter((val) => {
+      return val.year > 1500 && val.year < 1600
+    })
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
 
+    let fullNames = inventors.map((val, index) => {
+      return val.first + ' ' + val.last
+    })
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
 
+    let sortedYear = inventors.sort(function(a, b){
+      return a.year - b.year
+    })
+
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    let totalYears = inventors.reduce((acc, val) => {
+      console.log(val.passed - val.year)
+      return acc += (val.passed - val.year)
+    }, 0)
+
 
     // 5. Sort the inventors by years lived
+    let ages = inventors.map(val => {
+      return {name: val.first + ' ' + val.last, age: val.passed - val.year}
+    })
+
+    let sortedAges = ages.sort(function(a, b) {
+      return a.age - b.age
+    })
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // let mwCat = document.querySelector('.mw-category')
+    // let streetArray = Array.from(mwCat.querySelectorAll('a'))
+    // let de = streetArray
+    //           .map(val => val.textContent)
+    //           .filter(num => num.includes('de'))
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    let peopleSort = inventors.sort(function(a, b){
+      let nameA = a.last.toLowerCase();
+      let nameB = b.last.toLowerCase();
+      if (nameA < nameB) {
+        return -1
+      }
+      if (nameA > nameB) {
+        return 1
+      }
+      return 0
+    })
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    let numberOf = data.reduce((acc, val) => {
+      if (!acc[val]){
+        acc[val] = 1
+      } else {
+        acc[val]++
+      }
+      return acc
+    }, {})
 
   </script>
 </body>
